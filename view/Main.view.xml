@@ -1,0 +1,142 @@
+<core:View
+		xmlns:core="sap.ui.core"
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns:t="sap.ui.table"
+		xmlns="sap.m"
+		controllerName="sap.training.exc14.odata.view.Main"
+		xmlns:html="http://www.w3.org/1999/xhtml">
+		
+	<t:Table navigationMode="Paginator" rowSelectionChange="onFlightChange" rows="{/FlightSet}" selectionMode="Single" title="Flüge"
+		visibleRowCount="10">
+		<t:columns>
+			<t:Column>
+				<t:label>
+					<Label text="Fluggesellschaft"/>
+				</t:label>
+				<t:template>
+					<Text text="{Carrid}"/>
+				</t:template>
+			</t:Column>
+			<t:Column>
+				<t:label>
+					<Label text="Flugnummer"/>
+				</t:label>
+				<t:template>
+					<Text text="{Connid}"/>
+				</t:template>
+			</t:Column>
+			<t:Column>
+				<t:label>
+					<Label text="Flugdatum"/>
+				</t:label>
+				<t:template>
+					<Text text="{ path: 'Fldate', type: 'sap.ui.model.type.Date' }"/>
+				</t:template>
+			</t:Column>
+			<t:Column>
+				<t:label>
+					<Label text="Anzahl Sitzplätze"/>
+				</t:label>
+				<t:template>
+					<Text text="{Seatsmax}"/>
+				</t:template>
+			</t:Column>
+			<t:Column>
+				<t:label>
+					<Label text="Belegte Sitzplätze"/>
+				</t:label>
+				<t:template>
+					<Text text="{Seatsocc}"/>
+				</t:template>
+			</t:Column>
+				<t:Column>
+				<t:label>
+					<Label text="Aktion"/>
+				</t:label>
+				<t:template>
+					<core:Icon press="onCreateBooking" src="sap-icon://create" tooltip="Buchung anlegen">
+						<core:customData>
+							<core:CustomData key="Carrid" value="{Carrid}"/>
+							<core:CustomData key="Connid" value="{Connid}"/>
+							<core:CustomData key="Fldate" value="{Fldate}"/>
+						</core:customData>
+					</core:Icon>
+				</t:template>
+			</t:Column>
+		</t:columns>
+	</t:Table>
+	
+	<t:Table id="idBookingTable" navigationMode="Paginator" selectionMode="Single" title="Buchungen" visibleRowCount="10">
+		<t:columns>
+			<t:Column>
+				<t:label>
+					<Label text="Fluggesellschaft"/>
+				</t:label>
+				<t:template>
+					<Text text="{Carrid}"/>
+				</t:template>
+			</t:Column>
+			<t:Column>
+				<t:label>
+					<Label text="Flugnummer"/>
+				</t:label>
+				<t:template>
+					<Text text="{Connid}"/>
+				</t:template>
+			</t:Column>
+			<t:Column>
+				<t:label>
+					<Label text="Flugdatum"/>
+				</t:label>
+				<t:template>
+					<Text text="{ path: 'Fldate', type: 'sap.ui.model.type.Date' }"/>
+				</t:template>
+			</t:Column>
+			<t:Column>
+				<t:label>
+					<Label text="Buchungsnummer"/>
+				</t:label>
+				<t:template>
+					<Text text="{Bookid}"/>
+				</t:template>
+			</t:Column>
+			<t:Column>
+				<t:label>
+					<Label text="Passagiername"/>
+				</t:label>
+				<t:template>
+					<Text text="{Passname}"/>
+				</t:template>
+			</t:Column>
+			<t:Column>
+				<t:label>
+					<Label text="Buchungsdatum"/>
+				</t:label>
+				<t:template>
+					<Text text="{ path: 'OrderDate', type: 'sap.ui.model.type.Date' }"/>
+				</t:template>
+			</t:Column>
+			<t:Column>
+				<t:label>
+					<Label text="Storniert"/>
+				</t:label>
+				<t:template>
+					<Text text="{Cancelled}"/>
+				</t:template>
+			</t:Column>
+			<t:Column>
+				<t:label>
+					<Label text="Aktion"/>
+				</t:label>
+				<t:template>
+					<core:Icon press="onCancelBooking" src="sap-icon://sys-cancel" tooltip="Buchung stornieren">
+						<core:customData>
+							<core:CustomData key="Carrid" value="{Carrid}"/>
+							<core:CustomData key="Bookid" value="{Bookid}"/>
+						</core:customData>
+					</core:Icon>
+				</t:template>
+			</t:Column>
+		</t:columns>
+	</t:Table>
+</core:View>
