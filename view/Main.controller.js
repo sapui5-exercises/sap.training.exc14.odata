@@ -3,7 +3,10 @@ sap.ui.controller("sap.training.exc14.odata.view.Main", {
 	onInit: function() {
 
 		var sUrl = "/sap/opu/odata/sap/ZBC_TRAVEL_SRV/";
-		var oModel = new sap.ui.model.odata.v2.ODataModel(sUrl);
+
+		var oModel = new sap.ui.model.odata.v2.ODataModel(sUrl, {
+			disableHeadRequestForToken: true
+		});
 
 		this.getView().setModel(oModel);
 	},
